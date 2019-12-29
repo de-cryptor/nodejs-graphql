@@ -1,15 +1,20 @@
+// Package Imports 
 const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
 
+//Model Imports
 const Event = require('./models/event');
 
+//Start App
 const app = express();
 
+//Json Body Parser
 app.use(bodyParser.json());
 
+//Single API Endpoint
 app.use(
   '/graphql',
   graphqlHttp({
@@ -73,6 +78,7 @@ app.use(
   })
 );
 
+// Mongodb Atlas Connection
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_USER}:${
